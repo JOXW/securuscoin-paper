@@ -3702,20 +3702,22 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
     <small>v0.2.2</small>
   </center>
 </div>
-    <<div class="col-4 d-print-none">
-	<h3>Step 1</h3>
-	<p>Select a language for your wallet.</p>
-	<div class="btn-group" role="group" aria-label="Basic example">
-		<button class="btn btn-secondary" onclick="js:genwallet('english');" type="button" value="English">English</button> 
-		<button class="btn btn-secondary" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button> 
-		<button class="btn btn-secondary" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
-	</div>
-	<br>
-	<br>
-	<center>
-		<button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
-	</center>
+   <div class="col-4 d-print-none">
+        <h3>Step 1</h3>
+        <p>Select your language and click <strong>OK</strong>.</p>
+<center>
+<div class="btn-group" role="group" aria-label="Basic example">
+                <button class="btn btn-default" onclick="js:genwallet('english');" type="button" value="English">English</button>
+                <button class="btn btn-default" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button>
+                <button class="btn btn-default" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
 </div>
+</center>
+        <br>
+        <center>
+                <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
+        </center>
+</div>
+
     <div class="col-6 d-print-none">
       <h3>Step 2 (optional)</h3>
       <p>For extra security, type a few random letters, words, numbers or symbols into this blank to make your keys more compplex, or leave it empty. Press "Regenerate" when you are done. </p>
