@@ -3685,9 +3685,16 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
 </script>
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-2">
+
+        <img class="img-fluid" src="trtl.svg" alt="TurtleCoin">
+        <center>
+        <small>v0.2.2</small>
+      </center>
+    </div>
+    <div class="col-10">
       <center>
-        <h1 class="display-2 d-print-none">TurtleCoin Wallet Generator</h1>
+        <h1 class="display-3 d-print-none">TurtleCoin Wallet Generator</h1>
         <h2 class="d-print-block">TurtleCoin Wallet Generator</h2>
 
       <h5><span class="private"><strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show anyone.</span></h5>
@@ -3695,31 +3702,25 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
     </div>
   </div>
   <div class="row  d-print-none">
-<div class="col-2">
 
-    <img class="img-fluid" src="trtl.svg" alt="TurtleCoin">
-    <center>
-    <small>v0.2.2</small>
-  </center>
-</div>
-   <div class="col-4 d-print-none">
+   <!-- <div class="col-4 d-print-none">
         <h3>Step 1</h3>
         <p>Select your language and click <strong>OK</strong>.</p>
-<center>
-<div class="btn-group" role="group" aria-label="Basic example">
-                <button class="btn btn-default" onclick="js:genwallet('english');" type="button" value="English">English</button>
-                <button class="btn btn-default" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button>
-                <button class="btn btn-default" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
-</div>
-</center>
-        <br>
         <center>
-                <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+                        <button class="btn btn-default" onclick="js:genwallet('english');" type="button" value="English">English</button>
+                        <button class="btn btn-default" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button>
+                        <button class="btn btn-default" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
+        </div>
         </center>
-</div>
+                <br>
+                <center>
+                        <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
+                </center>
+    </div> -->
 
-    <div class="col-6 d-print-none">
-      <h3>Step 2 (optional)</h3>
+    <div class="col-12 d-print-none">
+      <h3>Step 1 (optional)</h3>
       <p>For extra security, type a few random letters, words, numbers or symbols into this blank to make your keys more complex, or leave it empty. Press "Regenerate" when you are done. </p>
       <input id="user_entropy_widget" type="text" style="width:100%;" value="" placeholder="  The more random stuff you type in this box, the better your keys will be." /><br /><br />
       <center>
@@ -3731,7 +3732,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
 
   <div class="row">
     <div class="col-12">
-      <h3 class="d-print-none">Step 3</h3>
+      <h3 class="d-print-none">Step 2</h3>
       <p class="d-print-none">Write down your public address, or copy paste it somewhere. Anyone with this address can send you money. You can also send this address to someone as a QR code by clicking the QR link.</p>
       <h3 class="d-print-block">Public Address</h3>
       <div class="col border border-success" style="padding: 1em;">
@@ -3742,7 +3743,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
         </strong>
       </center>
       </div>
-      <p class="d-print-block">This is your wallet address. Anybody with this address can send you money.</p>
+      <!-- <p class="d-print-block">This is your wallet address. Anybody with this address can send you money.</p>
 
         <span class="qrcode d-print-none" id="address_qr_widget" onclick="js:toggle_qr();"></span>
 
@@ -3752,8 +3753,8 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
         <button class="btn btn-default" href="#" onclick="js:toggle_qr();">Click to see QR Code</button>
       </center>
     </div>
-  </div>
-  <div class="row">
+  </div> -->
+  <!-- <div class="row">
   <div class="col-12">
     <h3 class="d-print-none">Step 4</h3>
     <h3 class="d-print-block">Seed Phrase</h3>
@@ -3772,7 +3773,7 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
 
     </em>
   </div>
-  </div>
+  </div> -->
   <br>
   <div class="row d-print-block">
     <div class="col-12">
@@ -3781,26 +3782,26 @@ d[e>>>5]|=128<<24-e%32;d[(e+64>>>9<<4)+14]=h.floor(b/4294967296);d[(e+64>>>9<<4)
     </div>
   </div>
   <div class="col">
-<div class="row border border-danger" style="padding:1em;">
-  <div class="col-3">
-    <strong>Spend Key:</strong>
-    <span class="private">
-      <span style="font-family: monospace, monospace; word-wrap: break-word;" id="spend_key_widget">Generating...</span>
-    </span>
-  </div>
-  <div class="col-3">
-    <strong>View Key:</strong>
-    <span class="private">
-      <span style="font-family: monospace, monospace; word-wrap: break-word;" id="view_key_widget">Generating...</span>
-    </span>
-  </div>
-  <div class="col-6">
-    <strong>GUI Wallet Key:</strong>
-    <span class="private-sm">
-      <small style="font-family: monospace, monospace; word-wrap: break-word;" id="wallet_keys_widget">Generating...</small>
-    </span>
-  </div>
-</div>
+    <div class="row border border-danger" style="padding:1em;">
+      <div class="col" style="overflow:visible">
+        <strong>Spend Key:</strong>
+        <span class="private">
+          <span style="font-family: monospace, monospace; word-wrap: break-word;" id="spend_key_widget">Generating...</span>
+        </span>
+      </div>
+      <div class="col" style="overflow:visible">
+        <strong>View Key:</strong>
+        <span class="private">
+          <span style="font-family: monospace, monospace; word-wrap: break-word;" id="view_key_widget">Generating...</span>
+        </span>
+      </div>
+      <!-- <div class="col-6">
+        <strong>GUI Wallet Key:</strong>
+        <span class="private-sm">
+          <small style="font-family: monospace, monospace; word-wrap: break-word;" id="wallet_keys_widget">Generating...</small>
+        </span>
+      </div> -->
+    </div>
 
 
 
@@ -3834,10 +3835,10 @@ function genwallet(lang)
 {
   spend_key_widget = document.getElementById("spend_key_widget");
   view_key_widget = document.getElementById("view_key_widget");
-  wallet_keys_widget = document.getElementById("wallet_keys_widget");
+  // wallet_keys_widget = document.getElementById("wallet_keys_widget");
   address_widget = document.getElementById("address_widget");
   address_qr_widget = document.getElementById("address_qr_widget");
-  mnemonic_widget = document.getElementById("mnemonic_widget");
+  // mnemonic_widget = document.getElementById("mnemonic_widget");
   user_entropy_widget = document.getElementById("user_entropy_widget")
 
   this.getStringWords = function(string) {
@@ -3864,10 +3865,10 @@ function genwallet(lang)
 
   spend_key_widget.innerHTML = keys.spend.sec;
   view_key_widget.innerHTML = keys.view.sec;
-  wallet_keys_widget.innerHTML = keys.privateKeys;
+  // wallet_keys_widget.innerHTML = keys.privateKeys;
   address_widget.innerHTML = keys.public_addr;
   address_qr_widget.innerHTML = "";
-  mnemonic_widget.innerHTML = mnemonic;
+  // mnemonic_widget.innerHTML = mnemonic;
 
   qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
   qr.makeCode("turtlecoin:"+keys.public_addr);
@@ -3904,13 +3905,13 @@ function genwallet_prefix_worker()
   spend_key_widget = document.getElementById("spend_key_widget");
   view_key_widget = document.getElementById("view_key_widget");
   address_widget = document.getElementById("address_widget");
-  mnemonic_widget = document.getElementById("mnemonic_widget");
+  // mnemonic_widget = document.getElementById("mnemonic_widget");
 
   spend_key_widget.innerHTML = keys.spend.sec;
   view_key_widget.innerHTML = keys.view.sec;
   address_widget.innerHTML = keys.public_addr;
   address_qr_widget.innerHTML = "";
-  mnemonic_widget.innerHTML = mnemonic;
+  // mnemonic_widget.innerHTML = mnemonic;
 
   wallet_keys_widget.innerHTML = keys.privateKeys;
 
@@ -3984,25 +3985,25 @@ function genwallet_prefix()
   }
 }
 
-function toggle_qr()
-{
-  address_qr_widget = document.getElementById("address_qr_widget");
-  spend_key_widget = document.getElementById("spend_key_widget");
-  view_key_widget = document.getElementById("view_key_widget");
-  mnemonic_widget = document.getElementById("mnemonic_widget");
-  if (address_qr_widget.style.display=="block") {
-    address_qr_widget.style.display="none";
-    spend_key_widget.style.display = "block";
-    view_key_widget.style.display = "block";
-    mnemonic_widget.style.display = "block";
-  }
-  else {
-    address_qr_widget.style.display="block";
-    spend_key_widget.style.display = "none";
-    view_key_widget.style.display = "none";
-    mnemonic_widget.style.display = "none";
-  }
-}
+// function toggle_qr()
+// {
+//   address_qr_widget = document.getElementById("address_qr_widget");
+//   spend_key_widget = document.getElementById("spend_key_widget");
+//   view_key_widget = document.getElementById("view_key_widget");
+//   // mnemonic_widget = document.getElementById("mnemonic_widget");
+//   if (address_qr_widget.style.display=="block") {
+//     address_qr_widget.style.display="none";
+//     spend_key_widget.style.display = "block";
+//     view_key_widget.style.display = "block";
+//     // mnemonic_widget.style.display = "block";
+//   }
+//   else {
+//     address_qr_widget.style.display="block";
+//     spend_key_widget.style.display = "none";
+//     view_key_widget.style.display = "none";
+//     // mnemonic_widget.style.display = "none";
+//   }
+// }
 
 genwallet();
 </script>
@@ -4099,4 +4100,3 @@ genwallet();
 /* Wallet generator modifications: Copyright 2015 moneromooo */
 
 -->
-
