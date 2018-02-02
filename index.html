@@ -3863,11 +3863,11 @@ function genwallet(lang)
   view_key_widget.innerHTML = keys.view.sec;
   // wallet_keys_widget.innerHTML = keys.privateKeys;
   address_widget.innerHTML = keys.public_addr;
-  address_qr_widget.innerHTML = "";
+  //address_qr_widget.innerHTML = "";
   // mnemonic_widget.innerHTML = mnemonic;
 
-  qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
-  qr.makeCode("turtlecoin:"+keys.public_addr);
+  //qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
+  //qr.makeCode("turtlecoin:"+keys.public_addr);
 }
 
 previous_button_text = "";
