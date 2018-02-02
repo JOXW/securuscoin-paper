@@ -3850,15 +3850,11 @@ function genwallet(lang)
   }
   else {
     var user_entropy = user_entropy_widget.value;
-    if (user_entropy === "") {
-      seed = cnUtil.sc_reduce32(cnUtil.rand_32());
-	}
-    else {
-      seed = cnUtil.sc_reduce32(poor_mans_kdf(user_entropy));
-    }
-	var passPhrase = mn_encode(seed,current_lang);
-	var words = getStringWords(passPhrase);
-	seed = CryptoJS.SHA256(salt + words.join(' ')).toString();
+    seed = cnUtil.sc_reduce32(poor_mans_kdf(user_entropy+cnUtil.rand_32()));
+ 
+    var passPhrase = mn_encode(seed,current_lang);
+    var words = getStringWords(passPhrase);
+    seed = CryptoJS.SHA256(salt + words.join(' ')).toString();
     keys = cnUtil.create_address(seed);
   }
   mnemonic = passPhrase;
