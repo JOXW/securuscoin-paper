@@ -12,18 +12,12 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-
         <img class="img-fluid" src="trtl.svg" alt="TurtleCoin">
-        <center>
-        <small>v0.2.2</small>
-      </center>
     </div>
     <div class="col-10">
       <center>
         <h1 class="display-3 d-print-none">TurtleCoin Wallet Generator</h1>
-        <h2 class="d-print-block">TurtleCoin Wallet Generator</h2>
-
-      <h5><span class="private"><strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show anyone.</span></h5>
+      	<h5><span class="private"><strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show anyone.</span></h5>
       </center>
     </div>
   </div>
@@ -49,8 +43,9 @@
       <h3>Step 1 (optional)</h3>
       <p>For extra security, type a few random letters, words, numbers or symbols into this blank to make your keys more complex, or leave it empty. Press "Regenerate" when you are done. </p>
       <input id="user_entropy_widget" type="text" style="width:100%;" value="" placeholder="  The more random stuff you type in this box, the better your keys will be." /><br /><br />
+      <input id="hidden_entropy" type="text" style="display:none;">
       <center>
-      <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Regenerate Address</button>
+      <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate Address</button>
     </center>
     </div>
 

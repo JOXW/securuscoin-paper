@@ -1,12 +1,14 @@
 function poor_mans_kdf(str)
 {
   var hex = cnBase58.bintohex(cnBase58.strtobin(str));
-  for (var n = 0; n < 10000; ++n)
+  for (var n = 0; n < 10000; ++n) {
     hex = keccak_256(cnBase58.hextobin(hex));
+  }
   return hex;
 }
-current_lang='english';
-keys = null;
+
+var current_lang='english';
+var keys = null;
 function genwallet(lang)
 {
   spend_key_widget = document.getElementById("spend_key_widget");
@@ -15,24 +17,20 @@ function genwallet(lang)
   address_widget = document.getElementById("address_widget");
   address_qr_widget = document.getElementById("address_qr_widget");
   // mnemonic_widget = document.getElementById("mnemonic_widget");
-  user_entropy_widget = document.getElementById("user_entropy_widget")
+  user_entropy_widget = document.getElementById("user_entropy_widget");
+  hidden_entropy = document.getElementById("hidden_entropy");
 
   this.getStringWords = function(string) {
     return string.replace(/^\s*(.*)\s*$/, '$1').replace(/\s+/, ' ').split(' ');
   };
 
-  if (lang!=null) {
-    current_lang = lang;
-  }
-  else {
-    var user_entropy = user_entropy_widget.value;
-    seed = cnUtil.sc_reduce32(poor_mans_kdf(user_entropy+cnUtil.rand_32()));
- 
-    var passPhrase = mn_encode(seed,current_lang);
-    var words = getStringWords(passPhrase);
-    seed = CryptoJS.SHA256(salt + words.join(' ')).toString();
-    keys = cnUtil.create_address(seed);
-  }
+  var added_entropy = hidden_entropy.value;
+  var seed = cnUtil.sc_reduce32(poor_mans_kdf(added_entropy+cnUtil.rand_32()));
+
+  var passPhrase = mn_encode(seed,current_lang);
+  var words = getStringWords(passPhrase);
+  seed = CryptoJS.SHA256(salt + words.join(' ')).toString();
+  keys = cnUtil.create_address(seed);
   mnemonic = passPhrase;
 
   spend_key_widget.innerHTML = keys.spend.sec;
@@ -41,11 +39,11 @@ function genwallet(lang)
   address_widget.innerHTML = keys.public_addr;
   //address_qr_widget.innerHTML = "";
   // mnemonic_widget.innerHTML = mnemonic;
-
   //qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
   //qr.makeCode("turtlecoin:"+keys.public_addr);
 }
 
+/*
 previous_button_text = "";
 prefix = "";
 function genwallet_prefix_worker()
@@ -156,6 +154,7 @@ function genwallet_prefix()
     setTimeout(genwallet_prefix_worker, 0);
   }
 }
+*/
 
 // function toggle_qr()
 // {
@@ -177,4 +176,4 @@ function genwallet_prefix()
 //   }
 // }
 
-//genwallet();
+genwallet();
