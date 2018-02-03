@@ -1,30 +1,31 @@
+var getStringWords = function(string) {
+  return string.replace(/^\s*(.*)\s*$/, '$1').replace(/\s+/, ' ').split(' ');
+};
+
+var genkeys = function(lang, additional_entropy) {
+  var seed = cnUtil.sc_reduce32(poor_mans_kdf(additional_entropy + cnUtil.rand_32()));
+  var passPhrase = mn_encode(seed, lang !== null && lang !== undefined ? lang : "english");
+  var words = getStringWords(passPhrase);
+  seed = CryptoJS.SHA256(salt + words.join(' ')).toString();
+  return cnUtil.create_address(seed);
+};
+
 var genwallet = function(lang) {
   document.getElementById("step2").style.display = "block";
   var spend_key_widget = document.getElementById("spend_key_widget");
   var view_key_widget = document.getElementById("view_key_widget");
-  // wallet_keys_widget = document.getElementById("wallet_keys_widget");
   var address_widget = document.getElementById("address_widget");
   var address_qr_widget = document.getElementById("address_qr_widget");
-  // mnemonic_widget = document.getElementById("mnemonic_widget");
   var user_entropy_widget = document.getElementById("user_entropy_widget");
 
-  this.getStringWords = function(string) {
-    return string.replace(/^\s*(.*)\s*$/, '$1').replace(/\s+/, ' ').split(' ');
-  };
-
-  var added_entropy = user_entropy_widget.value;
-  var seed = cnUtil.sc_reduce32(poor_mans_kdf(added_entropy+cnUtil.rand_32()));
-
-  var passPhrase = mn_encode(seed, lang !== null && lang !== undefined ? lang : "english");
-  var words = getStringWords(passPhrase);
-  seed = CryptoJS.SHA256(salt + words.join(' ')).toString();
-  var keys = cnUtil.create_address(seed);
-  //var mnemonic = passPhrase;
+  var keys = genkeys(lang, user_entropy_widget.value);
 
   spend_key_widget.innerHTML = keys.spend.sec;
   view_key_widget.innerHTML = keys.view.sec;
-  // wallet_keys_widget.innerHTML = keys.privateKeys;
   address_widget.innerHTML = keys.public_addr;
+
+  //var mnemonic = passPhrase;
+  // wallet_keys_widget.innerHTML = keys.privateKeys;
   //address_qr_widget.innerHTML = "";
   // mnemonic_widget.innerHTML = mnemonic;
   //qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
