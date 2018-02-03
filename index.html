@@ -40,21 +40,20 @@
     </div> -->
 
     <div class="col-12 d-print-none">
-      <h3>Step 1 (optional)</h3>
-      <p>For extra security, type a few random letters, words, numbers or symbols into this blank to make your keys more complex, or leave it empty. Press "Regenerate" when you are done. </p>
+      <h3>Step 1</h3>
+      <p>For extra security, type a few random letters, words, numbers, or symbols below. Press "Generate Wallet" when you are done. </p>
       <input id="user_entropy_widget" type="text" style="width:100%;" value="" placeholder="  The more random stuff you type in this box, the better your keys will be." /><br /><br />
-      <input id="hidden_entropy" type="text" style="display:none;">
       <center>
-      <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate Address</button>
+      <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate Wallet</button>
     </center>
     </div>
 
   </div>
 
-  <div class="row">
+  <div id="step2" class="row" style="display:none;">
     <div class="col-12">
       <h3 class="d-print-none">Step 2</h3>
-      <p class="d-print-none">Write down your public address, or copy paste it somewhere. Anyone with this address can send you money. You can also send this address to someone as a QR code by clicking the QR link.</p>
+      <p class="d-print-none">Write down your public address, or copy paste it somewhere. Anyone with this address can send you money.</p>
       <h3 class="d-print-block">Public Address</h3>
       <div class="col border border-success" style="padding: 1em;">
       <center>
@@ -103,6 +102,7 @@
     </div>
   </div>
   <div class="col">
+     <p class="d-print-none">Print or write down these keys and keep them safe. Without them you cannot access your money. There are no second chances.</p>
     <div class="row border border-danger" style="padding:1em;">
       <div class="col" style="overflow:visible">
         <strong>Spend Key:</strong>
@@ -130,7 +130,6 @@
 <div class="row d-print-none">
     <div class="col-12">
       <center>
-      <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate New Wallet</button>
       <input type="button" onClick="window.print()" class="btn btn-default" value="Print This Page"/>
     </center>
     </div>
