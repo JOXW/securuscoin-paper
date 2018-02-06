@@ -16,7 +16,6 @@ var getStringWords = function(string) {
 
 var genkeys = function(additional_entropy, lang) {
   var seed = cnUtil.sc_reduce32(poor_mans_kdf(additional_entropy + cnUtil.rand_32()));
-  seed = CryptoJS.SHA256(salt + seed).toString();
   var keys = cnUtil.create_address(seed);
   var passPhrase = mn_encode(seed, lang);
   return {
