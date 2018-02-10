@@ -22,7 +22,8 @@
     </div>
   </div>
   <div class="row  d-print-none">
-   <!--div class="col-4 d-print-none">
+
+   <!-- <div class="col-4 d-print-none">
         <h3>Step 1</h3>
         <p>Select your language and click <strong>OK</strong>.</p>
         <center>
@@ -36,28 +37,17 @@
                 <center>
                         <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
                 </center>
-    </div-->
+    </div> -->
+
     <div class="col-12 d-print-none">
-      <h3>Step 1 
-          <button class="btn btn-default" onclick="js:show_generate();" type="button" value="Generate a wallet">Generate a Wallet</button> or 
-          <button class="btn btn-default" onclick="js:show_restore();" type="button" value="restore keys from seed phrase">Restore keys from seed phrase</button>
-      </h3>
-      <div id="generate" style="display:none;">
-        <p>For extra security, type a few random letters, words, numbers, or symbols below. Press "Generate Wallet" when you are done.</p>
-        <input id="user_entropy_widget" type="text" style="width:100%;" value="" placeholder="  The more random stuff you type in this box, the better your keys will be." /><br /><br />
-        <center>
-          <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate Wallet</button>
-        </center>
-      </div>
-     
-      <div id="restore" style="display: none;">
-        <input id="seed_phrase" type="text" style="width:100%;" value="" placeholder="Enter your seed phrase words here."/><br /><br />
-        <center>
-          <button class="btn btn-default" onclick="js:restore_keys(null);" type="button" value="Restore keys">Restore Keys</button>
-        </center>
-      </div>
-  
+      <h3>Step 1</h3>
+      <p>For extra security, type a few random letters, words, numbers, or symbols below. Press "Generate Wallet" when you are done. </p>
+      <input id="user_entropy_widget" type="text" style="width:100%;" value="" placeholder="  The more random stuff you type in this box, the better your keys will be." /><br /><br />
+      <center>
+      <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate Wallet</button>
+    </center>
     </div>
+
   </div>
 
   <div id="step2" class="row" style="display:none;">
@@ -84,22 +74,26 @@
       </center>
     </div>
   </div> -->
-  <div class="row" >
+  <!-- <div class="row">
   <div class="col-12">
-    <h3 class="d-print-none">Step 3</h3>
+    <h3 class="d-print-none">Step 4</h3>
     <h3 class="d-print-block">Seed Phrase</h3>
-    <p class="d-print-none">Copy your seed phrase and keys. If you lose your wallet, these can be used to restore your money. That also means you need to keep them safe and private.</p>
+    <p class="d-print-none">Copy your seed phrase and keys. It seems like a lot, but if you lose your wallet, these can be used to restore your money. That also means you need to keep them safe and private.</p>
     <p class="d-print-block">This is your seed phrase. You can use it to regenerate your wallet if you lose it.</p>
     <em>
+
       <div class="col border border-danger" style="font-family: monospace, monospace; padding: 1em;">
-        <strong>Seed Phrase:</strong>
         <span class="private">
           <span id="mnemonic_widget">Reticulating Splines...</span>
         </span>
       </div>
+
+
+
+
     </em>
   </div>
-  </div> 
+  </div> -->
   <br>
   <div class="row d-print-block">
     <div class="col-12">
@@ -108,7 +102,7 @@
     </div>
   </div>
   <div class="col">
-     <!--p class="d-print-none">Print or write down these keys and keep them safe. Without them you cannot access your money. There are no second chances.</p-->
+     <p class="d-print-none">Print or write down these keys and keep them safe. Without them you cannot access your money. There are no second chances.</p>
     <div class="row border border-danger" style="padding:1em;">
       <div class="col" style="overflow:visible">
         <strong>Spend Key:</strong>
@@ -143,6 +137,7 @@
 
 </div>
 </div>
+
 	<script type="text/javascript" src="crypto_utils.js"></script>
 	<script type="text/javascript" src="wallet.js"></script>
 
