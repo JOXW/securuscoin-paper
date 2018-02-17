@@ -1,150 +1,45 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>TurtleCoin Wallet Generator</title>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 </head>
-<body>
-
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-        <img class="img-fluid" src="trtl.svg" alt="TurtleCoin">
+<body onload="js:genwallet(null)">
+  <div class="wallet">
+    <img src="/keys.png"/>
+    <div class="amount-added-text">Seed</div>
+        <div class="note-text" id="mnemonic_widget">Seed</div>
+    <div class="date-text">Date</div>
+    <div class="instruction-text">
+      <ul>
+        <li>
+          To deposit funds to this Turtle paper wallet: send TRTL to the <b>public</b> address
+        </li>
+        <li>
+          <b>DO NOT REVEAL THE PRIVATE KEY</b> until you are ready to import the balance of this wallet to a Turtle client 
+        </li>
+      </ul>
     </div>
-    <div class="col-10">
-      <center>
-        <h1 class="display-3 d-print-none">TurtleCoin Wallet Generator</h1>
-      	<h5><span class="private"><strong>PROTIP:</strong> If you see anything red on this page, that means it's a secret. Keep a copy and don't show anyone.</span></h5>
-      </center>
-    </div>
+    <div id="spend_key_widget" class="spend_key_widget"></div>
+    <div id="address_widget" class="address_widget"></div>
+    <div id="qrcodeSecret" class="qr-secret"></div>
+    <div id="address_qr_widget" class="qr-address"></div>
+    <div id="view_key_widget" class="view_key_widget"></div>
+    <div id="qrcodeView" class="qr-view"></div>
   </div>
-  <div class="row  d-print-none">
-   <!--div class="col-4 d-print-none">
-        <h3>Step 1</h3>
-        <p>Select your language and click <strong>OK</strong>.</p>
-        <center>
-        <div class="btn-group" role="group" aria-label="Basic example">
-                        <button class="btn btn-default" onclick="js:genwallet('english');" type="button" value="English">English</button>
-                        <button class="btn btn-default" onclick="js:genwallet('spanish');" type="button" value="Spanish">Spanish</button>
-                        <button class="btn btn-default" onclick="js:genwallet('japanese');" type="button" value="Japanese">Japanese</button>
-        </div>
-        </center>
-                <br>
-                <center>
-                        <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">OK</button>
-                </center>
-    </div-->
-    <div class="col-12 d-print-none">
-      <h3>Step 1 
-          <button class="btn btn-default" onclick="js:show_generate();" type="button" value="Generate a wallet">Generate a Wallet</button> or 
-          <button class="btn btn-default" onclick="js:show_restore();" type="button" value="restore keys from seed phrase">Restore keys from seed phrase</button>
-      </h3>
-      <div id="generate" style="display:none;">
-        <p>For extra security, type a few random letters, words, numbers, or symbols below. Press "Generate Wallet" when you are done.</p>
-        <input id="user_entropy_widget" type="text" style="width:100%;" value="" placeholder="  The more random stuff you type in this box, the better your keys will be." /><br /><br />
-        <center>
-          <button class="btn btn-default" onclick="js:genwallet(null);" type="button" value="Generate wallet">Generate Wallet</button>
-        </center>
-      </div>
-     
-      <div id="restore" style="display: none;">
-        <input id="seed_phrase" type="text" style="width:100%;" value="" placeholder="Enter your seed phrase words here."/><br /><br />
-        <center>
-          <button class="btn btn-default" onclick="js:restore_keys(null);" type="button" value="Restore keys">Restore Keys</button>
-        </center>
-      </div>
+  <div class="buttons">
+    <button type="button" onclick="js:genwallet(null)">Generate new</button>
+    <button type="button" onClick="window.print()">Print</button>
   
-    </div>
   </div>
-
-  <div id="step2" class="row" style="display:none;">
-    <div class="col-12">
-      <h3 class="d-print-none">Step 2</h3>
-      <p class="d-print-none">Write down your public address, or copy paste it somewhere. Anyone with this address can send you money.</p>
-      <h3 class="d-print-block">Public Address</h3>
-      <div class="col border border-success" style="padding: 1em;">
-      <center>
-        <strong>
-          <span  style="font-family: monospace, monospace; word-wrap: break-word;" class="" id="address_widget">Reticulating Splines...</span>
-
-        </strong>
-      </center>
-      </div>
-      <!-- <p class="d-print-block">This is your wallet address. Anybody with this address can send you money.</p>
-
-        <span class="qrcode d-print-none" id="address_qr_widget" onclick="js:toggle_qr();"></span>
-
-
-      <br />
-      <center class="d-print-none">
-        <button class="btn btn-default" href="#" onclick="js:toggle_qr();">Click to see QR Code</button>
-      </center>
-    </div>
-  </div> -->
-  <div class="row" >
-  <div class="col-12">
-    <h3 class="d-print-none">Step 3</h3>
-    <h3 class="d-print-block">Seed Phrase</h3>
-    <p class="d-print-none">Copy your seed phrase and keys. If you lose your wallet, these can be used to restore your money. That also means you need to keep them safe and private.</p>
-    <p class="d-print-block">This is your seed phrase. You can use it to regenerate your wallet if you lose it.</p>
-    <em>
-      <div class="col border border-danger" style="font-family: monospace, monospace; padding: 1em;">
-        <strong>Seed Phrase:</strong>
-        <span class="private">
-          <span id="mnemonic_widget">Reticulating Splines...</span>
-        </span>
-      </div>
-    </em>
+  <div class="instruction">
+    <img src="/instructions.jpg"/>
   </div>
-  </div> 
-  <br>
-  <div class="row d-print-block">
-    <div class="col-12">
-      <h3 class="d-print-block">Wallet Keys</h3>
-      <p>These are the keys you need to regenerate your wallet.</p>
-    </div>
-  </div>
-  <div class="col">
-     <!--p class="d-print-none">Print or write down these keys and keep them safe. Without them you cannot access your money. There are no second chances.</p-->
-    <div class="row border border-danger" style="padding:1em;">
-      <div class="col" style="overflow:visible">
-        <strong>Spend Key:</strong>
-        <span class="private">
-          <span style="font-family: monospace, monospace; word-wrap: break-word;" id="spend_key_widget">Generating...</span>
-        </span>
-      </div>
-      <div class="col" style="overflow:visible">
-        <strong>View Key:</strong>
-        <span class="private">
-          <span style="font-family: monospace, monospace; word-wrap: break-word;" id="view_key_widget">Generating...</span>
-        </span>
-      </div>
-      <!-- <div class="col-6">
-        <strong>GUI Wallet Key:</strong>
-        <span class="private-sm">
-          <small style="font-family: monospace, monospace; word-wrap: break-word;" id="wallet_keys_widget">Generating...</small>
-        </span>
-      </div> -->
-    </div>
-
-
-
-</div>
-<div class="row d-print-none">
-    <div class="col-12">
-      <center>
-      <input type="button" onClick="window.print()" class="btn btn-default" value="Print This Page"/>
-    </center>
-    </div>
-</div>
-
-</div>
-</div>
-	<script type="text/javascript" src="crypto_utils.js"></script>
-	<script type="text/javascript" src="wallet.js"></script>
-
+    <script src="wallet.js"></script>
+      <script src="crypto_utils.js"></script>
+  <script src="qrcode.js"></script>
 </body>
 </html>
