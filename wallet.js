@@ -28,7 +28,7 @@ var genwallet = function(lang) {
   var view_key_widget = document.getElementById("view_key_widget");
   var address_widget = document.getElementById("address_widget");
   var address_qr_widget = document.getElementById("address_qr_widget");
-  var user_entropy_widget = 20;
+  var user_entropy_widget = Math.floor(100000000 + Math.random() * 900000000);
 
   var res = genkeys(user_entropy_widget.value, lang);
   var keys = res.keys;
@@ -54,9 +54,9 @@ var genwallet = function(lang) {
   qr.make();
   document.getElementById('qrcodeSecret').innerHTML = qr.createImgTag();
 
-  var qr3 = qrcode(typeNumber, errorCorrectionLevel);
-  qr3.addData(keys.view.sec);
-  qr3.make();
+  var qr = qrcode(typeNumber, errorCorrectionLevel);
+  qr.addData(keys.view.sec);
+  qr.make();
   document.getElementById('qrcodeView').innerHTML = qr3.createImgTag();
 
 

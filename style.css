@@ -109,16 +109,16 @@ body {
   font-size: 11px;
   word-wrap: break-word;
   text-transform: uppercase;
-  top: 280px;
+  top: 70px;
 }
 .view_key_widget {
   left: 50px;
   width: 100px;
 }
 
-
 .qr-view {
-  left: 150px;
+  left: 140px;
+  top: 60px;
 }
 
 .qr-secret, .qr-address {
