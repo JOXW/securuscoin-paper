@@ -57,7 +57,7 @@ var genwallet = function(lang) {
   var qr = qrcode(typeNumber, errorCorrectionLevel);
   qr.addData(keys.view.sec);
   qr.make();
-  document.getElementById('qrcodeView').innerHTML = qr3.createImgTag();
+  document.getElementById('qrcodeView').innerHTML = qr.createImgTag();
 
 
 };
