@@ -70,6 +70,32 @@ body {
   text-decoration: none;
 }
 
+.logo img {
+  height: 100px;
+  width: auto;
+}
+
+.logo-text {
+  position: absolute;
+  text-align: center;
+  left: 20px;
+  top: 252px;
+  width: 260px;
+  height: 165px;
+  font-size: 32px;
+  color: #193039;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.logo-text ul {
+  list-style: none;
+}
+
+.logo-text ul li {
+  margin-bottom: 5px;
+}
+
 .amount-added-text, .date-text, .note-text {
   position: absolute;
   height: 20px;
