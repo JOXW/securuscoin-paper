@@ -1,14 +1,17 @@
 body {
   font-family: 'SF UI Display Medium',sans-serif;
   font-weight: 400;
-  overflow-y: scroll;
+  overflow-y: visible;
+  overflow-x: visible;
   margin: 0;
 }
+
+.print {display: none;}
 
 .wallet {
   width: 1000px;
   height: 428px;
-  margin: 60px auto 20px auto;
+  margin: 900px auto 200px auto;
   position: relative;
 }
 
@@ -47,8 +50,8 @@ body {
 
 .instruction-text {
   position: absolute;
-  left: 356px;
-  top: 252px;
+  left: 375px;
+  top: 262px;
   width: 260px;
   height: 165px;
   font-size: 10px;
@@ -105,6 +108,8 @@ body {
   -ms-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
+}
+.amount-added-text, .date-text {
   text-transform: uppercase;
 }
 
@@ -124,6 +129,7 @@ body {
   left: 425px;
   top: 125px;
   width: 200px;
+  font-style: italic;
 }
 
 .view_key_widget, .qr-view {
@@ -166,30 +172,15 @@ body {
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-
-.buttons {
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-button {
-  background-color: #fff;
-  color: #367A9D;
-  padding: 10px 30px;
-  margin: 0 10px;
-  transition: all 0.4s; 
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-family: 'SF UI Display Medium',sans-serif;
-  font-weight: 400;
-}
-
-button:hover {
-  background-color: #C1F0FF;
-}
-
-@media print {
+@media print  {
+  .noprint  {
+    display: none;
+    }
+  .print {
+    display: block;
+    display: relative;
+    z-index: 999999999;
+  }
   body {
     background-image: none;
     height: 750px;
@@ -198,7 +189,13 @@ button:hover {
     transform: rotate(90deg);
   }
   .wallet {margin: 0;}
-  button {
+  .container, .hero-body, .hero {
     display: none;
   }
+
 }
+@media screen {
+  .noscreen {
+    display: none;
+    }
+  }
