@@ -1387,6 +1387,21 @@ var cnBase58 = (function () {
     this.strtobin = strtobin;
     b58.strtobin = strtobin;
 
+    function hextostr (hex) {
+        var h2b = hextobin(hex)
+        var res = ''
+        for (var i = 0; i < h2b.length; i++) {
+            res = res + String.fromCharCode(h2b[i])
+        }
+        return res
+    }
+    b58.hextostr = hextostr
+
+    function strtohex (str) {
+        return bintohex(strtobin(str))
+    }
+    b58.strtohex = strtohex
+
     function bintostr(bin) {
         var out = [];
         for (var i = 0; i < bin.length; i++) {
@@ -2073,6 +2088,101 @@ var cnUtil = (function(initConfig) {
         if (!stmt) {
             throw "assert failed" + (val !== undefined ? ': ' + val : '');
         }
+    }
+
+    this.validate_address = function(address_b58) {
+
+        var output = {
+            valid: false,
+            input_address: address_b58,
+            address:"",
+            is_integrated:false,
+            integrated_id:""
+        }
+
+        // Quick check to see that it's valid
+        if((address_b58.length != 99 && address_b58.length != 187) || address_b58.substring(0,4) != "TRTL") {
+            return output;
+        }
+
+        // Check if it's valid base 58
+        try {
+            var address_hex = cnBase58.decode(address_b58);
+        } catch (error) {
+            return output;
+        }
+
+        // Our prefix in hex
+        var prefix_hex = cnUtil.encode_varint(config.addressPrefix);
+
+        // Check that our address starts with the correct prefix (should as we did a quick check above)
+        if(!address_hex.substr(0, prefix_hex.length) == prefix_hex) {
+            return output;
+        }
+
+        // check if we have an integrated address
+        var is_integrated = address_b58.length == 187;
+
+        // get the hex address without prefix
+        var address_no_prefix = address_hex.slice(prefix_hex.length);
+
+        if(is_integrated) {
+
+            // get the integrated id
+            var integrated_id = address_no_prefix.slice(0, 128);
+
+            // get the public spend and view key
+            var spend = address_no_prefix.slice(128, 128 + 64);
+            var view = address_no_prefix.slice(128 + 64, 256);
+
+            // get the checksum
+            var checksum = address_no_prefix.slice(256, 256 + (ADDRESS_CHECKSUM_SIZE * 2));
+
+            // Calculate the expected checksum (integrated addr)
+            var expectedChecksum = cnUtil.cn_fast_hash(prefix_hex + integrated_id + spend + view)
+                    .slice(0, ADDRESS_CHECKSUM_SIZE * 2);
+
+        } else {
+
+            // get the public spend and view key
+            var spend = address_no_prefix.slice(0, 64);
+            var view = address_no_prefix.slice(64, 128);
+
+            // get the checksum
+            var checksum = address_no_prefix.slice(128, 128 + (ADDRESS_CHECKSUM_SIZE * 2));
+
+            // Calculate the expected checksum (non integrated addr)
+            var expectedChecksum = cnUtil.cn_fast_hash(prefix_hex + spend + view).slice(0, ADDRESS_CHECKSUM_SIZE * 2);
+        }
+
+        if (checksum == expectedChecksum) {
+            output.valid = true;
+        }
+
+        if(!output.valid) {
+            return output;
+        }
+
+        // if we have integrated, calculate the base address
+        output.is_integrated = is_integrated;
+        if(output.is_integrated) {
+            /* As goofy as this sounds, we need to convert the payment
+               ID from hex into a string representation so that it returns
+               to a human readable form */
+            output.integrated_id = cnBase58.hextostr(integrated_id);
+
+            // Get the base address without the payment id
+            var data = prefix_hex + spend + view;
+            checksum = cnUtil.cn_fast_hash(data);
+            address_b58 = cnBase58.encode(data + checksum.slice(0, ADDRESS_CHECKSUM_SIZE * 2));
+        }
+
+        output.address = address_b58;
+        output.view = view;
+        output.spend = spend;
+        output.noprefix = address_no_prefix;
+
+        return output;
     }
 
     return this;
