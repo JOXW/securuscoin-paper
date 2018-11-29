@@ -95,6 +95,15 @@ var genwallet = function(lang) {
   //address_qr_widget.innerHTML = "";
   //qr=new QRCode(address_qr_widget, {correctLevel:QRCode.CorrectLevel.L});
   //qr.makeCode("DERO:"+keys.public_addr);
+
+  document.getElementById("identicon_widget").innerHTML = "";
+  var icon = document.createElement("canvas");
+  icon.width = 128;
+  icon.height = 128;
+  icon.setAttribute("data-jdenticon-value", keys.public_addr);
+  document.getElementById("identicon_widget").appendChild(icon);
+  jdenticon.update(icon);
+
 };
 
 /*
