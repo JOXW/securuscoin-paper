@@ -85,6 +85,10 @@
 
 /* Wallet generator modifications: Copyright 2015 moneromooo */
 
+// Copyright (c) 2018, The TurtleCoin Developers
+//
+// Please see the included LICENSE file for more information.
+
 
 var JSBigInt = (function () {
     "use strict";

@@ -1,3 +1,7 @@
+// Copyright (c) 2018, The TurtleCoin Developers
+//
+// Please see the included LICENSE file for more information.
+
 var notification = document.getElementById("notification_container");
 var identicon_widget = document.getElementById("address_identicon_widget");
 var qr_widget = document.getElementById("address_qr_widget");

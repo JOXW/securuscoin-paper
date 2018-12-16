@@ -1,3 +1,7 @@
+// Copyright (c) 2018, The TurtleCoin Developers
+//
+// Please see the included LICENSE file for more information.
+
 var container = document.getElementById("select_identicon");
 var show_new = document.getElementById("show_new_icons");
 
