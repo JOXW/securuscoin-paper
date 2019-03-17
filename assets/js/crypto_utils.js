@@ -85,7 +85,7 @@
 
 /* Wallet generator modifications: Copyright 2015 moneromooo */
 
-// Copyright (c) 2018, The TurtleCoin Developers
+// Copyright (c) 2018, The TurtleCoin Developers, 2019 The SecurusCoin Project
 //
 // Please see the included LICENSE file for more information.
 
